@@ -16,7 +16,7 @@ const data = require('./data/data.json');
   * une chaîne de caractères.
   */
 function demarrage(){
-    return "";
+    return "BONJOUR";
 }
 
  /**
@@ -26,7 +26,7 @@ function demarrage(){
   * Elle retourne un objet javascript au format json.
   */
 function home(){
-    return undefined;
+    return data;
 }
 
  /**
@@ -36,7 +36,7 @@ function home(){
   * Elle retourne un objet javascript contenant toutes les données.
   */
 function donnees(){
-    return {};
+    return data;
 }
 
  /**
@@ -48,7 +48,7 @@ function donnees(){
   * Cette liste sera contenu dans la clé communication
   */
 function comms(){
-    return {"communication":[]};
+    return {"communication":data.communication};
 }
 
 
@@ -61,7 +61,7 @@ function comms(){
   * Cette liste sera contenue dans la clé objects
   */
 function objects(){
-    return {"objects":[]};
+    return {"objects":data.objects};
 }
 
  /**
@@ -73,7 +73,7 @@ function objects(){
   * Cette liste sera contenu dans la clé types
   */
 function types(){
-    return undefined;
+    return {"types": Object.entries(data.types) };
 }
 
 /**
@@ -85,7 +85,7 @@ function types(){
  * Cette liste sera contenu dans la clé formats.
  */
 function formats(){
-   return undefined;
+   return {"formats": Object.entries(data.data_formats) };
 }
 
  /**
@@ -97,7 +97,7 @@ function formats(){
   * Cette liste sera contenue dans la clé objects
   */
 function objects_serials(){
-    return {"objects":[]};
+    return {"objects": data.objects.map(element => element.serial)};
 }
 
 /**
@@ -108,7 +108,7 @@ function objects_serials(){
  * l'objet ayant le serial passé en paramètre.
  */
 function get_object_by_serial(serial){
-    return serial;
+    return {;data.objects.filter(element => element.serial === serial)};
 }
 
 /**
@@ -186,6 +186,7 @@ function get_full_object_by_serial(serial){
  */
 
 const express =require('express');
+const {JSON} = require("mocha/lib/reporters");
 const app = express();
 app.use(express.static('public'));
 
